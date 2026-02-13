@@ -5,12 +5,30 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-           <service id="SwagBlogPlug\Core\Content\Blog\SwagBlogDefination">
+          <service id="SwagBlogPlug\Core\Content\Blog\SwagBlogDefination">
             <tag name="shopware.entity.definition"/>
         </service>
 
+
+        <service id="SwagBlogPlug\Core\Content\Blog\Aggregate\SwagBlogTranslationDefinition">
+            <tag name="shopware.entity.definition"/>
+        </service>
+
+       
         <service id="SwagBlogPlug\Core\Content\BlogCategory\SwagBlogCategoryDefination">
             <tag name="shopware.entity.definition"/>
+        </service>
+
+        <service id="SwagBlogPlug\Core\Content\BlogCategory\Aggregate\SwagBlogCategoryTranslationDefinition">
+            <tag name="shopware.entity.definition"/>
+        </service>
+
+        <service id="SwagBlogPlug\Core\Content\Blog\Aggregate\SwagBlogProduct\SwagBlogProductDefinition">
+            <tag name="shopware.entity.definition"/>
+        </service>
+
+        <service id="SwagBlogPlug\Core\Content\Extension\ProductExtension">
+            <tag name="shopware.entity.extension"/>
         </service>
     </services>
 </container>

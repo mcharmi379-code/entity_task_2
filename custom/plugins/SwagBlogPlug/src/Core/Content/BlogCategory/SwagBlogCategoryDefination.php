@@ -7,9 +7,13 @@ use Shopware\Core\Framework\DataAbstractionLayer\Field\BoolField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToManyAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
 use SwagBlogPlug\Core\Content\Blog\SwagBlogDefination;
+use SwagBlogPlug\Core\Content\BlogCategory\Aggregate\SwagBlogCategoryTranslationDefinition;
 
 class SwagBlogCategoryDefination extends EntityDefinition
 {
@@ -33,9 +37,20 @@ class SwagBlogCategoryDefination extends EntityDefinition
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
-            (new BoolField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            (new StringField('name', 'name')),
-            (new OneToManyAssociationField('blogs',SwagBlogDefination::class,'category_id','id'))
+            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+            (new TranslatedField('name'))->addFlags(new Required()),
+            
+        new OneToManyAssociationField(
+            'blogs',
+            SwagBlogDefination::class,
+            'swag_blog_category_id',
+            'id'
+        ),
+
+        new TranslationsAssociationField(
+            SwagBlogCategoryTranslationDefinition::class,
+            'swag_blog_category_id'
+        ),
         ]);
     }
 }
