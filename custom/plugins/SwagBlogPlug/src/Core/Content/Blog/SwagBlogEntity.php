@@ -146,7 +146,7 @@ class SwagBlogEntity extends Entity
         return $this->products;
     }
 
-    public function setProducts(?ProductCollection $products): void
+    public function setProducts(ProductCollection $products): void
     {
         $this->products = $products;
     }
