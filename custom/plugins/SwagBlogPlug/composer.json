@@ -1,0 +1,27 @@
+{
+    "name": "swag-blog-plug/swag-blog-plug",
+    "description": "This plugin adds a blog category entity to the Shopware platform.",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "~6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "SwagBlogPlug\\SwagBlogPlug",
+        "label": {
+            "de-DE": "BlogCategory Plugin",
+            "en-GB": "BlogCategory Plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "SwagBlogPlug\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SwagBlogPlug\\Tests\\": "tests/"
+        }
+    }
+}
