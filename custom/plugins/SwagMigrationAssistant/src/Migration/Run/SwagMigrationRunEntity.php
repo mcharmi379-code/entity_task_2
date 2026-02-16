@@ -59,12 +59,12 @@ class SwagMigrationRunEntity extends Entity
         $this->connection = $connection;
     }
 
-    public function getTotals(): ?array
+      public function getTotals(): ?array
     {
         return $this->totals;
     }
 
-    public function setTotals(array $totals): void
+    public function setTotals(?array $totals): void
     {
         $this->totals = $totals;
     }
