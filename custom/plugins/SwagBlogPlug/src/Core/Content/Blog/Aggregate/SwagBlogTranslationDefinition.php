@@ -28,7 +28,8 @@ class SwagBlogTranslationDefinition extends EntityTranslationDefinition
             new StringField('name', 'name'),
 
             new StringField('author', 'author'),
-
+            
+            new StringField('description', 'description'),
         ]);
     }
 }
