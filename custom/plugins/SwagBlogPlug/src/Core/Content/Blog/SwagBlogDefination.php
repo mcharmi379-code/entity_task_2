@@ -33,15 +33,15 @@ class SwagBlogDefination extends EntityDefinition
         return self::ENTITY_NAME;
     }
 
-    public function getEntityClass(): string
-    {
-        return SwagBlogEntity::class;
-    }
+    // public function getEntityClass(): string
+    // {
+    //     return SwagBlogEntity::class;
+    // }
 
-    public function getCollectionClass(): string
-    {
-        return SwagBlogCollection::class;
-    }
+    // public function getCollectionClass(): string
+    // {
+    //     return SwagBlogCollection::class;
+    // }
 
     protected function defineFields(): FieldCollection
     {

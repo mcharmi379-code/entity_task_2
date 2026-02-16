@@ -24,15 +24,15 @@ class SwagBlogCategoryDefination extends EntityDefinition
         return self::ENTITY_NAME;
     }
 
-    public function getEntityClass(): string
-    {
-        return SwagBlogCategoryEntity::class;
-    }
+    // public function getEntityClass(): string
+    // {
+    //     return SwagBlogCategoryEntity::class;
+    // }
 
-    public function getCollectionClass(): string
-    {
-        return SwagBlogCategoryCollection::class;
-    }
+    // public function getCollectionClass(): string
+    // {
+    //     return SwagBlogCategoryCollection::class;
+    // }
 
     protected function defineFields(): FieldCollection
     {
