@@ -24,6 +24,7 @@ CREATE TABLE `swag_migration_run` (
     `connection_id` BINARY(16) NULL,
     `environment_information` JSON NULL,
     `progress` JSON NULL,
+    `totals` INT(11) NULL,
     `step` VARCHAR(255) NOT NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NULL,
@@ -118,24 +119,59 @@ CREATE TABLE `swag_migration_connection` (
 
 CREATE TABLE `swag_blog` (
     `id` BINARY(16) NOT NULL,
-    `name` VARCHAR(255) NULL,
-    `description` VARCHAR(255) NULL,
-    `active` TINYINT(1) NULL DEFAULT '0',
-    `author` VARCHAR(255) NULL,
-    `release_date` DATE NULL,
-    `product_id` BINARY(16) NULL,
-    `category_id` BINARY(16) NULL,
+    `active` TINYINT(1) NOT NULL DEFAULT '0',
+    `release_date` DATE NOT NULL,
+    `swag_blog_category_id` BINARY(16) NOT NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NULL,
     PRIMARY KEY (`id`),
-    KEY `fk.swag_blog.category_id` (`category_id`),
-    CONSTRAINT `fk.swag_blog.category_id` FOREIGN KEY (`category_id`) REFERENCES `swag_blog_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+    CONSTRAINT `json.swag_blog.translated` CHECK (JSON_VALID(`translated`)),
+    KEY `fk.swag_blog.swag_blog_category_id` (`swag_blog_category_id`),
+    CONSTRAINT `fk.swag_blog.swag_blog_category_id` FOREIGN KEY (`swag_blog_category_id`) REFERENCES `swag_blog_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `swag_blog_translation` (
+    `name` VARCHAR(255) NOT NULL,
+    `author` VARCHAR(255) NULL,
+    `description` VARCHAR(255) NOT NULL,
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3) NULL,
+    `swag_blog_id` BINARY(16) NOT NULL,
+    `language_id` BINARY(16) NOT NULL,
+    PRIMARY KEY (`swag_blog_id`,`language_id`),
+    KEY `fk.swag_blog_translation.swag_blog_id` (`swag_blog_id`),
+    KEY `fk.swag_blog_translation.language_id` (`language_id`),
+    CONSTRAINT `fk.swag_blog_translation.swag_blog_id` FOREIGN KEY (`swag_blog_id`) REFERENCES `swag_blog` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `fk.swag_blog_translation.language_id` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `swag_blog_category` (
-    `id` TINYINT(1) NOT NULL DEFAULT '0',
+    `id` BINARY(16) NOT NULL,
+    `created_at` DATETIME(3) NOT NULL,
+    `updated_at` DATETIME(3) NULL,
+    PRIMARY KEY (`id`),
+    CONSTRAINT `json.swag_blog_category.translated` CHECK (JSON_VALID(`translated`))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `swag_blog_category_translation` (
     `name` VARCHAR(255) NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3) NULL,
-    PRIMARY KEY (`id`)
+    `swag_blog_category_id` BINARY(16) NOT NULL,
+    `language_id` BINARY(16) NOT NULL,
+    PRIMARY KEY (`swag_blog_category_id`,`language_id`),
+    KEY `fk.swag_blog_category_translation.swag_blog_category_id` (`swag_blog_category_id`),
+    KEY `fk.swag_blog_category_translation.language_id` (`language_id`),
+    CONSTRAINT `fk.swag_blog_category_translation.swag_blog_category_id` FOREIGN KEY (`swag_blog_category_id`) REFERENCES `swag_blog_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `fk.swag_blog_category_translation.language_id` FOREIGN KEY (`language_id`) REFERENCES `language` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `swag_blog_product` (
+    `blog_id` BINARY(16) NOT NULL,
+    `product_id` BINARY(16) NOT NULL,
+    PRIMARY KEY (`blog_id`,`product_id`),
+    KEY `fk.swag_blog_product.blog_id` (`blog_id`),
+    KEY `fk.swag_blog_product.product_id` (`product_id`),
+    CONSTRAINT `fk.swag_blog_product.blog_id` FOREIGN KEY (`blog_id`) REFERENCES `swag_blog` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `fk.swag_blog_product.product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

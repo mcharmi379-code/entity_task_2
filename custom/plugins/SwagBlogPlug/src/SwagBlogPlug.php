@@ -55,4 +55,5 @@ class SwagBlogPlug extends Plugin
     public function postUpdate(UpdateContext $updateContext): void
     {
     }
+ 
 }
