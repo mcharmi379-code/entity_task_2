@@ -48,7 +48,7 @@ class SwagBlogDefination extends EntityDefinition
         return new FieldCollection([
             (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
             (new TranslatedField('name'))->addFlags(new Required()),
-            (new StringField('description', 'description'))->addFlags(new Required()),
+            (new TranslatedField('description', 'description'))->addFlags(new Required()),
             (new BoolField('active', 'active'))->addFlags(new Required()),
             new TranslatedField('author'),
             (new DateField('release_date', 'releaseDate'))->addFlags(new Required()),
