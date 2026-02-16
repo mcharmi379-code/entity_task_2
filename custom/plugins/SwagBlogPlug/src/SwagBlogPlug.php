@@ -2,7 +2,7 @@
 
 namespace SwagBlogPlug;
 
-use Dba\Connection;
+use Doctrine\DBAL\Connection;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\ActivateContext;
 use Shopware\Core\Framework\Plugin\Context\DeactivateContext;
@@ -28,7 +28,19 @@ class SwagBlogPlug extends Plugin
         // Remove or deactivate the data created by the plugin
 
         $connection = $this->container->get(Connection::class);
-        $connection->executeStatement('DROP TABLE IF EXISTS `swag_blog`, `swag_blog_translation`, `swag_blog_category`, `swag_blog_category_translation`, `swag_blog_category_translation`,`swag_blog_product`');
+
+        $tables = [
+        'swag_blog_product',
+        'swag_blog_translation',
+        'swag_blog_category_translation',
+        'swag_blog',
+        'swag_blog_category',
+     
+        ];
+
+        foreach ($tables as $table) {
+            $connection->executeStatement("DROP TABLE IF EXISTS `$table`");
+        }
     }
 
     public function activate(ActivateContext $activateContext): void

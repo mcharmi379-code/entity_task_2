@@ -17,4 +17,5 @@
 /auth.json
 /install.lock
 /public/asset-manifest.json
+**/node_modules/
 ###< shopware/core ###
