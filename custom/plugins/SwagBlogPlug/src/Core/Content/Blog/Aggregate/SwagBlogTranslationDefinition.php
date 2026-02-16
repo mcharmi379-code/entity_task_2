@@ -7,6 +7,8 @@ use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
 use SwagBlogPlug\Core\Content\Blog\SwagBlogDefination;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\AllowHtml;
+
 
 class SwagBlogTranslationDefinition extends EntityTranslationDefinition
 {
@@ -30,7 +32,7 @@ class SwagBlogTranslationDefinition extends EntityTranslationDefinition
 
             new StringField('author', 'author'),
             
-            (new StringField('description', 'description'))->addFlags(new Required()),
+            (new StringField('description', 'description'))->addFlags(new Required(),new AllowHtml()),
         ]);
     }
 }

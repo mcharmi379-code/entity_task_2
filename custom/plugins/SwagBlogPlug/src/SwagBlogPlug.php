@@ -28,7 +28,7 @@ class SwagBlogPlug extends Plugin
         // Remove or deactivate the data created by the plugin
 
         $connection = $this->container->get(Connection::class);
-        $connection->executeStatement('DROP TABLE IF EXISTS `swag_blog`');
+        $connection->executeStatement('DROP TABLE IF EXISTS `swag_blog`, `swag_blog_translation`, `swag_blog_category`, `swag_blog_category_translation`, `swag_blog_category_translation`,`swag_blog_product`');
     }
 
     public function activate(ActivateContext $activateContext): void
