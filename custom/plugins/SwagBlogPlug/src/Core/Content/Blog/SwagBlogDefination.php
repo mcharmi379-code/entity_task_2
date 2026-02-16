@@ -11,18 +11,19 @@ use Shopware\Core\Framework\DataAbstractionLayer\Field\BoolField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\CreatedAtField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\DateField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\AllowHtml;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\UpdatedAtField;
 use SwagBlogPlug\Core\Content\Blog\Aggregate\SwagBlogProduct\SwagBlogProductDefinition;
 use SwagBlogPlug\Core\Content\Blog\Aggregate\SwagBlogTranslationDefinition;
 use SwagBlogPlug\Core\Content\BlogCategory\SwagBlogCategoryDefination;
+
 
 class SwagBlogDefination extends EntityDefinition
 {
@@ -48,7 +49,7 @@ class SwagBlogDefination extends EntityDefinition
         return new FieldCollection([
             (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
             (new TranslatedField('name'))->addFlags(new Required()),
-            (new TranslatedField('description', 'description'))->addFlags(new Required()),
+            (new TranslatedField('description', 'description'))->addFlags(new Required(), new AllowHtml()),
             (new BoolField('active', 'active'))->addFlags(new Required()),
             new TranslatedField('author'),
             (new DateField('release_date', 'releaseDate'))->addFlags(new Required()),

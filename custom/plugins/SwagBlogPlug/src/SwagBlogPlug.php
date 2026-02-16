@@ -2,6 +2,7 @@
 
 namespace SwagBlogPlug;
 
+use Dba\Connection;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\ActivateContext;
 use Shopware\Core\Framework\Plugin\Context\DeactivateContext;
@@ -25,6 +26,9 @@ class SwagBlogPlug extends Plugin
         }
 
         // Remove or deactivate the data created by the plugin
+
+        $connection = $this->container->get(Connection::class);
+        $connection->executeStatement('DROP TABLE IF EXISTS `swag_blog`');
     }
 
     public function activate(ActivateContext $activateContext): void
