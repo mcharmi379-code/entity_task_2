@@ -1,2 +1,2 @@
     // alert('Hello SwagBlogPlug!');
-    import './module/swag-example';
+    import './module/blog';
