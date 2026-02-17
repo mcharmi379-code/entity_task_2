@@ -1,6 +1,7 @@
 Shopware.Module.register('blog', {
     type: 'plugin',
     name: 'swag-blog-plug',
+    title: 'yexample title', 
 
     // routes: {
     //     index: {
