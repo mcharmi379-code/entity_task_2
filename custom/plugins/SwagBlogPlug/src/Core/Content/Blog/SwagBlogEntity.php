@@ -79,9 +79,9 @@ class SwagBlogEntity extends Entity
     protected $blogs;
 
     /**
-     * @var array|null
-     */
-    protected $translated;
+ * @var array
+    */
+    protected $translated = [];
 
     public function getId(): string
     {
@@ -213,13 +213,15 @@ class SwagBlogEntity extends Entity
         $this->blogs = $blogs;
     }
 
-    public function getTranslated(): ?array
+
+
+    public function getTranslated(): array
     {
         return $this->translated;
     }
 
-    public function setTranslated(?array $translated): void
+    public function setTranslated(array $translated): void
     {
         $this->translated = $translated;
     }
-}
+    }

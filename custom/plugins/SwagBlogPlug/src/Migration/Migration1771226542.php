@@ -20,13 +20,11 @@ class Migration1771226542 extends MigrationStep
     public function update(Connection $connection): void
     {
         $connection->executeStatement("
-            CREATE TABLE `swag_blog_category` (
+             CREATE TABLE `swag_blog_category` (
                 `id` BINARY(16) NOT NULL,
                 `created_at` DATETIME(3) NOT NULL,
                 `updated_at` DATETIME(3) NULL,
-                `translated` JSON NOT NULL,
-                PRIMARY KEY (`id`),
-                CONSTRAINT `json.swag_blog_category.translated` CHECK (JSON_VALID(`translated`))
+                PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         ");
 
@@ -38,11 +36,13 @@ class Migration1771226542 extends MigrationStep
             `swag_blog_category_id` BINARY(16) NULL,
             `created_at` DATETIME(3) NOT NULL,
             `updated_at` DATETIME(3) NULL,
-            `translated` JSON NOT NULL,
             PRIMARY KEY (`id`),
-            CONSTRAINT `json.swag_blog.translated` CHECK (JSON_VALID(`translated`)),
             KEY `fk.swag_blog.swag_blog_category_id` (`swag_blog_category_id`),
-            CONSTRAINT `fk.swag_blog.swag_blog_category_id` FOREIGN KEY (`swag_blog_category_id`) REFERENCES `swag_blog_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+            CONSTRAINT `fk.swag_blog.swag_blog_category_id`
+                FOREIGN KEY (`swag_blog_category_id`)
+                REFERENCES `swag_blog_category` (`id`)
+                ON DELETE SET NULL
+                ON UPDATE CASCADE
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         ");
 
@@ -75,7 +75,7 @@ class Migration1771226542 extends MigrationStep
                 CREATE TABLE `swag_blog_category_translation` (
                     `swag_blog_category_id` BINARY(16) NOT NULL,
                     `language_id` BINARY(16) NOT NULL,
-                    `name` VARCHAR(255) NULL,
+                    `name` VARCHAR(255) NOT NULL,
                     `created_at` DATETIME(3) NOT NULL,
                     `updated_at` DATETIME(3) NULL,
                     PRIMARY KEY (`swag_blog_category_id`,`language_id`),

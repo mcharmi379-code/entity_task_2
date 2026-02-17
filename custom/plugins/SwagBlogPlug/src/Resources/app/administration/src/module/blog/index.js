@@ -1,29 +1,52 @@
-console.log("Blog module initialization started");
-
+// console.log("Blog module initialization started");
 import './page/blog-list';
+import './page/blog-detail';
+import './page/blog-create';
 
-console.log("blog-list page imported");
+// console.log("blog-list page imported");
 
-Shopware.Module.register('blog', {
+Shopware.Module.register('sw-blog', {
     type: 'plugin',
-    name: 'swag-blog-plug',
-    title: 'example title', 
-    description: 'example description',
+
+    name: 'Blog',
+    title: 'Blog',
+    description: 'Blog module',
+
+    color: '#57D9A3',
+    icon: 'default-documentation-file',
 
     routes: {
         list: {
             component: 'blog-list',
-            path: 'list'
+            path: 'list',
         },
+
+        detail: {
+            component: 'blog-detail',
+            path: 'detail/:id',
+            meta: {
+                parentPath: 'sw.blog.list'
+            }
+        },
+
+        create: {
+            component: 'blog-create',
+            path: 'create',
+            meta: {
+                parentPath: 'sw.blog.list'
+            }
+        }
     },
 
-    navigation: [{
-        parent: 'sw-content',     
-        label: 'Blog',
-        path: 'blog.list',  
-        icon: 'regular-shopping-bag',
-        position: 100
-    }]
+        navigation: [{
+            id: 'blog',
+            label: 'Blog',
+            color: '#57D9A3',
+            path: 'sw.blog.list',
+            icon: 'default-documentation-file',
+            parent: 'sw-content',
+            position: 100
+        }]
 });
 
-alert("Blog module registered successfully");
+

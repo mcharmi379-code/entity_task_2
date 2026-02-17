@@ -6,6 +6,9 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityTranslationDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
 use SwagBlogPlug\Core\Content\Blog\SwagBlogDefination;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\CreatedAtField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\UpdatedAtField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use SwagBlogPlug\Core\Content\BlogCategory\SwagBlogCategoryDefination;
 
 class SwagBlogCategoryTranslationDefinition extends EntityTranslationDefinition
@@ -26,7 +29,10 @@ class SwagBlogCategoryTranslationDefinition extends EntityTranslationDefinition
     {
         return new FieldCollection([
 
-            new StringField('name', 'name'),
+            (new StringField('name', 'name'))->addFlags(new Required()),
+
+            new CreatedAtField(),
+            new UpdatedAtField(),
 
         ]);
     }

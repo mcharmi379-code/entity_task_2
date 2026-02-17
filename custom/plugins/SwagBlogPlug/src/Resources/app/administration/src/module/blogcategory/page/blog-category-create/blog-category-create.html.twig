@@ -1,0 +1,30 @@
+<template>
+    <sw-page>
+        <template #smart-bar-header>
+            <h2>Create Blog Category</h2>
+        </template>
+
+        <template #smart-bar-actions>
+            <sw-button
+                variant="primary"
+                :isLoading="isLoading"
+                @click="onSave">
+                Save
+            </sw-button>
+        </template>
+
+        <template #content>
+            <sw-card v-if="blogCategory">
+            {# <sw-language-switch></sw-language-switch> #}
+            {{blogCategory}}
+
+            <sw-text-field
+                v-model:value = "blogCategory.name"
+                label="Name"
+                required>
+            </sw-text-field>
+        </sw-card>
+
+        </template>
+    </sw-page>
+</template>

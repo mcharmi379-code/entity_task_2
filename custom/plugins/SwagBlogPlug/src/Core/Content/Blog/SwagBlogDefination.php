@@ -53,7 +53,13 @@ class SwagBlogDefination extends EntityDefinition
             (new BoolField('active', 'active'))->addFlags(new Required()),
             new TranslatedField('author'),
             (new DateField('release_date', 'releaseDate'))->addFlags(new Required()),
-            (new FkField('swag_blog_category_id', 'swagBlogCategoryId', SwagBlogCategoryDefination::class))->addFlags(new Required()),
+            (new FkField(
+                'swag_blog_category_id',
+                'swagBlogCategoryId',
+                SwagBlogCategoryDefination::class,
+                'id'
+            ))->addFlags(new Required()),
+
             new CreatedAtField(),
             new UpdatedAtField(),
             new ManyToManyAssociationField('products', ProductDefinition::class, SwagBlogProductDefinition::class, 'blog_id', 'product_id'),

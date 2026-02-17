@@ -14,6 +14,9 @@ use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
 use SwagBlogPlug\Core\Content\Blog\SwagBlogDefination;
 use SwagBlogPlug\Core\Content\BlogCategory\Aggregate\SwagBlogCategoryTranslationDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\CreatedAtField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\UpdatedAtField;
+
 
 class SwagBlogCategoryDefination extends EntityDefinition
 {
@@ -38,8 +41,11 @@ class SwagBlogCategoryDefination extends EntityDefinition
     {
         return new FieldCollection([
             (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
-            (new TranslatedField('name'))->addFlags(new Required()),
-            
+            (new TranslatedField('name')),
+
+        new CreatedAtField(),
+        new UpdatedAtField(),
+
         new OneToManyAssociationField(
             'blogs',
             SwagBlogDefination::class,

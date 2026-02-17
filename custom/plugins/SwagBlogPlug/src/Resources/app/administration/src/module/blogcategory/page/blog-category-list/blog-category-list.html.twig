@@ -1,0 +1,34 @@
+<template>
+    <sw-page>
+        <template #smart-bar-header>
+            <h2>Blog Category</h2>
+        </template>
+
+        <template #smart-bar-actions>
+            <sw-button
+                variant="primary"
+                :routerLink="{ name: 'sw.blogcategory.create' }">
+                Add Category
+            </sw-button>
+        </template>
+
+        <template #content>
+            <sw-entity-listing
+                v-if="blogCategories"
+                :items="blogCategories"
+                :repository="repository"
+                :showSelection="false"
+                :isLoading="isLoading"
+                @delete="onDelete">
+
+                <template #columns>
+                    <sw-data-grid-column
+                        property="name"
+                        label="Name">
+                    </sw-data-grid-column>
+                </template>
+
+            </sw-entity-listing>
+        </template>
+    </sw-page>
+</template>

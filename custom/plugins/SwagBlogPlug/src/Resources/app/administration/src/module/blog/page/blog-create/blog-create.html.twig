@@ -1,0 +1,31 @@
+{% block swag_blog_create %}
+	<sw-page>
+		<template #smart-bar-header>
+			<h2>Create Blog</h2>
+		</template>
+
+		<template #smart-bar-actions>
+			<sw-button variant="primary" @click="onSave">
+				Save
+			</sw-button>
+		</template>
+
+		<template #content>
+			<sw-card title="General Information">
+				<sw-text-field label="Name" v-model:value="blog.name"></sw-text-field>
+
+				<sw-text-field label="Author" v-model:value="blog.author"></sw-text-field>
+
+				<sw-textarea-field label="Description" v-model:value="blog.description"></sw-textarea-field>
+
+				<sw-datepicker label="Release Date" v-model:value="blog.releaseDate"></sw-datepicker>
+
+				<sw-switch-field label="Active" v-model:value="blog.active"></sw-switch-field>
+
+				<sw-entity-single-select label="Category" entity="swag_blog_category" v-model:value="blog.swagBlogCategoryId"></sw-entity-single-select>
+
+			</sw-card>
+		</template>
+	</sw-page>
+{% endblock %}
+
