@@ -42,6 +42,12 @@ Component.register('blog-category-create', {
                 });
         },
         onSave() {
+            if (!this.blogCategory.name || this.blogCategory.name.trim() === '') {
+                this.createNotificationError({
+                    message: 'Name is required'
+                });
+                return;
+            }
             this.isLoading = true;
 
             this.repository

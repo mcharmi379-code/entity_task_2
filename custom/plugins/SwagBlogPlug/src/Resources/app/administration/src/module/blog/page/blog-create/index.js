@@ -44,6 +44,36 @@ Component.register('blog-create', {
         },
 
         onSave() {
+              if (!this.blog.name || this.blog.name.trim() === '') {
+                this.createNotificationError({
+                    message: 'Name is required'
+                });
+                return;
+            }
+            if (!this.blog.description || this.blog.description.trim() === '') {
+                this.createNotificationError({
+                    message: 'Description is required'
+                });
+                return;
+            }
+            if (!this.blog.releaseDate || this.blog.releaseDate.trim() === '') {
+                this.createNotificationError({
+                    message: 'Release Date is required'
+                });
+                return;
+            }
+            if (!this.blog.swagBlogCategoryId) {
+                this.createNotificationError({
+                    message: 'Category is required'
+                });
+                return;
+            }
+            if (!this.blog.products || this.blog.products.length === 0) {
+                this.createNotificationError({
+                    message: 'At least one product must be selected'
+                });
+                return;
+            }
             this.isLoading = true;
 
             this.repository
