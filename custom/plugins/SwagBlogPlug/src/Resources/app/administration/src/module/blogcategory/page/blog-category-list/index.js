@@ -1,7 +1,5 @@
 import template from './blog-category-list.html.twig';
-// Shopware.Component.register('blog-category-list', {
-//     template 
-// });
+
 const { Component, Mixin } = Shopware;
 const { Criteria } = Shopware.Data;
 
@@ -18,7 +16,14 @@ Component.register('blog-category-list', {
         return {
             repository: null,
             blogCategories: null,
-            isLoading: false,
+            total: 0,
+            isLoading: false
+        };
+    },
+
+    metaInfo() {
+        return {
+            title: 'Blog Category Listing'
         };
     },
 
@@ -31,12 +36,18 @@ Component.register('blog-category-list', {
         getList() {
             this.isLoading = true;
 
-            const criteria = new Criteria();
+            const criteria = new Criteria(this.page, this.limit);
+
             criteria.addAssociation('translations');
+
+            criteria.addSorting(
+                Criteria.sort(this.sortBy || 'createdAt', this.sortDirection || 'DESC')
+            );
 
             this.repository.search(criteria, Shopware.Context.api)
                 .then((result) => {
                     this.blogCategories = result;
+                    this.total = result.total;
                     this.isLoading = false;
                 });
         },

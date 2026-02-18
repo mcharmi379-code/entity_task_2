@@ -13,21 +13,18 @@
         </template>
 
         <template #content>
-            <sw-entity-listing
+         <sw-entity-listing
                 v-if="blogCategories"
                 :items="blogCategories"
                 :repository="repository"
                 :showSelection="false"
                 :isLoading="isLoading"
-                @delete="onDelete">
-
-                <template #columns>
-                    <sw-data-grid-column
-                        property="name"
-                        label="Name">
-                    </sw-data-grid-column>
-                </template>
-
+                :total="total"
+                detailRoute="sw.blogcategory.detail"
+                :columns="[
+                    { property: 'translated.name', label: 'Name' }
+                ]"
+                @delete-item="onDelete">
             </sw-entity-listing>
         </template>
     </sw-page>

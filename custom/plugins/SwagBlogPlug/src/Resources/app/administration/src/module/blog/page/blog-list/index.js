@@ -1,9 +1,3 @@
-// import template from './blog-list.html.twig';
-// console.log("blog-list page initialization started");
-// Shopware.Component.register('blog-list', {
-//     template : '<h1> hello </h1>'
-// });
-
 import template from './blog-list.html.twig';
 
 const { Component, Mixin } = Shopware;

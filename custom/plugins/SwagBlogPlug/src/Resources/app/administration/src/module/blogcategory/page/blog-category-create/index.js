@@ -1,7 +1,3 @@
-// import template from './blog-category-create.html.twig';
-// Shopware.Component.register('blog-category-create', {
-//     template 
-// });
 import template from './blog-category-create.html.twig';
 
 const { Component, Mixin } = Shopware;
@@ -25,49 +21,48 @@ Component.register('blog-category-create', {
 
 
     created() {
+        this.repository = this.repositoryFactory.create('swag_blog_category');
 
-        // this.repository = this.repositoryFactory.create('swag_blog_category');
-
-        const context = { ...Shopware.Context.api };
-        context.languageId = Shopware.State.get('context').api.languageId;
-
-        this.blogCategory = this.blogCategoryRepository.create(context);
-
-        console.log('LanguageId used:', context.languageId);
-        console.log('Created entity:', this.blogCategory);
+        if (this.$route.params.id) {
+            this.loadEntity();
+        } else {
+            this.blogCategory = this.repository.create(Shopware.Context.api);
+        }
     },
 
-    mounted() {
-        console.log('blog-category-create component loaded', this.blogCategory);
-    },
     methods: {
-       onSave() {
+        loadEntity() {
             this.isLoading = true;
 
-            console.log('Saving entity payload:', this.blogCategory);
+            this.repository
+                .get(this.$route.params.id, Shopware.Context.api)
+                .then((entity) => {
+                    this.blogCategory = entity;
+                    this.isLoading = false;
+                });
+        },
+        onSave() {
+            this.isLoading = true;
 
-            this.blogCategoryRepository.save(this.blogCategory, Shopware.Context.api)
+            this.repository
+                .save(this.blogCategory, Shopware.Context.api)
                 .then(() => {
                     this.createNotificationSuccess({
-                        message: 'Category created successfully'
+                        message: 'Category saved successfully'
                     });
 
                     this.$router.push({
                         name: 'sw.blogcategory.list'
                     });
                 })
-                .catch((error) => {
-                    console.error('Save failed:', error);
+                .catch(() => {
+                    this.createNotificationError({
+                        message: 'Error while saving category'
+                    });
                 })
                 .finally(() => {
                     this.isLoading = false;
                 });
         }
-
-    },
-    computed : {
-        blogCategoryRepository() {
-            return this.repositoryFactory.create('swag_blog_category');
-        },
     }
 });

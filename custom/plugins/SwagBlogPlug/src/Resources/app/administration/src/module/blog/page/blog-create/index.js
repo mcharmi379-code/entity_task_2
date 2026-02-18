@@ -1,41 +1,68 @@
-// import template from './blog-create.html.twig';
-// console.log("blog-create page initialization started");
-// Shopware.Component.register('blog-create', {
-//     template
-// });
 import template from './blog-create.html.twig';
 
-const { Component } = Shopware;
+const { Component, Mixin } = Shopware;
+const { Criteria } = Shopware.Data;
 
 Component.register('blog-create', {
     template,
 
     inject: ['repositoryFactory'],
 
+    mixins: [
+        Mixin.getByName('notification')
+    ],
+
     data() {
         return {
             blog: null,
             repository: null,
-            categoryRepository: null,
             isLoading: false
         };
     },
 
     created() {
         this.repository = this.repositoryFactory.create('swag_blog');
-        this.categoryRepository = this.repositoryFactory.create('swag_blog_category');
 
-        this.blog = this.repository.create(Shopware.Context.api);
+        if (this.$route.params.id) {
+            this.loadEntity();
+        } else {
+            this.blog = this.repository.create(Shopware.Context.api);
+            this.blog.active = true;
+        }
     },
 
     methods: {
-        onSave() {
-            console.log('Saving entity payload:', this.blog);
+        loadEntity() {
             this.isLoading = true;
 
-            this.repository.save(this.blog, Shopware.Context.api).then(() => {
-                this.$router.push({ name: 'swag.blog.list' });
-            });
+            this.repository
+                .get(this.$route.params.id, Shopware.Context.api)
+                .then((entity) => {
+                    this.blog = entity;
+                    this.isLoading = false;
+                });
+        },
+
+        onSave() {
+            this.isLoading = true;
+
+            this.repository
+                .save(this.blog, Shopware.Context.api)
+                .then(() => {
+                    this.createNotificationSuccess({
+                        message: 'Blog saved successfully'
+                    });
+
+                    this.$router.push({ name: 'sw.blog.list' });
+                })
+                .catch(() => {
+                    this.createNotificationError({
+                        message: 'Error while saving blog'
+                    });
+                })
+                .finally(() => {
+                    this.isLoading = false;
+                });
         }
     }
 });

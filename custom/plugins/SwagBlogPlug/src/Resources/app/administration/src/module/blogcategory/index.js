@@ -1,9 +1,5 @@
-// alert("Blog category module registered successfully");
 import './page/blog-category-list';
-import './page/blog-category-detail';
 import './page/blog-category-create';
-
-console.log("Blog category module initialization started");
 
 Shopware.Module.register('sw-blogcategory', {
    type: 'plugin',
@@ -22,7 +18,7 @@ Shopware.Module.register('sw-blogcategory', {
             },
 
             detail: {
-                component: 'blog-category-detail',
+                component: 'blog-category-create',
                 path: 'detail/:id',
                 meta: {
                     parentPath: 'sw.blogcategory.list'

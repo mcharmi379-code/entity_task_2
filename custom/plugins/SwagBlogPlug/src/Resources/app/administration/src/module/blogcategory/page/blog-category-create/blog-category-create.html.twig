@@ -1,7 +1,10 @@
 <template>
-    <sw-page>
+    <sw-page :isLoading="isLoading">
+
         <template #smart-bar-header>
-            <h2>Create Blog Category</h2>
+            <h2>
+                {{ $route.params.id ? 'Edit Blog Category' : 'Create Blog Category' }}
+            </h2>
         </template>
 
         <template #smart-bar-actions>
@@ -15,16 +18,14 @@
 
         <template #content>
             <sw-card v-if="blogCategory">
-            {# <sw-language-switch></sw-language-switch> #}
-            {{blogCategory}}
 
             <sw-text-field
                 v-model:value = "blogCategory.name"
                 label="Name"
                 required>
             </sw-text-field>
-        </sw-card>
 
+        </sw-card>
         </template>
     </sw-page>
 </template>

@@ -1,9 +1,6 @@
-// console.log("Blog module initialization started");
 import './page/blog-list';
-import './page/blog-detail';
 import './page/blog-create';
 
-// console.log("blog-list page imported");
 
 Shopware.Module.register('sw-blog', {
     type: 'plugin',
@@ -22,7 +19,7 @@ Shopware.Module.register('sw-blog', {
         },
 
         detail: {
-            component: 'blog-detail',
+            component: 'blog-create',
             path: 'detail/:id',
             meta: {
                 parentPath: 'sw.blog.list'
