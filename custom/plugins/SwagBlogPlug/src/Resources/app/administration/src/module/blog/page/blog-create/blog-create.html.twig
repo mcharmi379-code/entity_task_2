@@ -47,7 +47,36 @@
                 v-model:value="blog.swagBlogCategoryId">
             </sw-entity-single-select>
 
+           <sw-entity-multi-select
+                label="Products"
+                entity="product"
+                :entity-collection="products"
+                :criteria="productCriteria"
+                :context="productContext"
+                advanced-selection-component="sw-advanced-selection-product"
+                @update:entity-collection="setProductCollection">
+                <template #selection-label-property="{ item }">
+                    <sw-product-variant-info :variations="item.variation">
+                        {{ item.translated.name || item.name }}
+                    </sw-product-variant-info>
+                </template>
 
+                <template #result-item="{ item, index, searchTerm, highlightSearchTerm, isSelected }">
+                    <sw-select-result
+                        :selected="isSelected(item)"
+                        v-bind="{ item, index, searchTerm, highlightSearchTerm }">
+                        <span class="sw-select-result__result-item-text">
+                            <sw-product-variant-info
+                                :variations="item.variation"
+                                :highlighted="highlightSearchTerm"
+                                :search-term="searchTerm"
+                            >
+                                {{ item.translated.name || item.name }}
+                            </sw-product-variant-info>
+                        </span>
+                    </sw-select-result>
+                </template>
+            </sw-entity-multi-select>
         </sw-card>
     </template>
 
