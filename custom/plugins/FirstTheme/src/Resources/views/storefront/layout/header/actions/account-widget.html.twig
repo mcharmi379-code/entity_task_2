@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/layout/header/actions/account-widget.html.twig' %}
+{% block layout_header_actions_account_widget_dropdown_button %}
+
+    {{ parent() }}
+  <a href="{{ theme_config('ctaUrl') }}"
+           class="btn btn-primary ms-3"
+           target="_blank">
+            Open Link
+        </a>
+        <div>
+        {# {{ theme_config('my-single-select-field') }} #}
+        </div>
+{% endblock %}
