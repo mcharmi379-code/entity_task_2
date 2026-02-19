@@ -18,5 +18,17 @@
   "asset": [
     "@Storefront",
     "app/storefront/src/assets"
-  ]
+  ],
+   "config": {
+      "fields": {
+        "ctaUrl": {
+          "type": "url",
+          "label": {
+            "en-GB": "CTA Button URL",
+            "de-DE": "CTA Button URL"
+          },
+          "scss": false
+        }
+      }
+   }
 }
