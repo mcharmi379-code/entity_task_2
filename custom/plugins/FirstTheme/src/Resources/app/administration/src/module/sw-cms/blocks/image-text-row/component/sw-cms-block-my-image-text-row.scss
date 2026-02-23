@@ -1,0 +1,20 @@
+.sw-cms-block-image-text-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-gap: 40px;
+
+    .sw-cms-block-column {
+        &.is--bottom {
+            grid-column: 1 / span 3; 
+            max-width: 33%; 
+        }
+    }
+
+    .sw-cms-el-text {
+        padding-top: 20px;
+    }
+
+    .sw-cms-el-image.is--cover {
+        min-height: 200px;
+    }
+}
