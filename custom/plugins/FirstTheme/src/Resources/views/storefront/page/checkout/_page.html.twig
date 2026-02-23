@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block component_checkout_confirm_additional %}
+    {{ parent() }}
+    <h1> heey </h1>
+    {{ order.customFields.custom_checkout}}
+
+    {# <div class="my-custom-field">
+        <label for="custom_checkout_">Custom Field</label>
+        <input type="text"
+               name="customFields[custom_checkout_]"
+               id="custom_checkout_"
+               class="form-control" /> #}
+    </div>
+{% endblock %}

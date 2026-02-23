@@ -1,0 +1,12 @@
+{% block cms_block_my_image_text_bubble %}
+    <div class="cms-block my-image-text-bubble">
+        <div class="row">
+            {% for slotName in ['left', 'center', 'right'] %}
+                {% set element = block.slots.getSlot(slotName) %}
+                <div class="col-md-4" data-cms-element-id="{{ element.id }}">
+                    {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
