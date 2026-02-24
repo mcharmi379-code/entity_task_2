@@ -29,18 +29,81 @@ Shopware.Service('cmsService').registerCmsBlock({
         marginRight: '20px',
         sizingMode: 'boxed',
     },
-    slots: {
-         first: {
-            type: 'image-button'
-        },
-        second: {
-            type: 'image-button'
-        },
-        third: {
-            type: 'image-button'
-        },
-        fourth: {
-            type: 'image-button'
+  slots: {
+    first: {
+        type: 'image-button',
+        default: {
+            config: {
+                media: {
+                    source: 'static',
+                    value: '019c8fbd1d627c2893e5713c87f9d03e',
+                    entity: { name: 'media' }
+                },
+                buttonText: { source: 'static', value: 'Click here' },
+                buttonUrl: { source: 'static', value: null },
+                contentText: {
+                    source: 'static',
+                    value: '<p>Lorem ipsum dolor sit amet elitr.</p>'
+                }
+            }
         }
     },
+
+    second: {
+        type: 'image-button',
+         default: {
+            config: {
+                media: {
+                    source: 'static',
+                    value: '019c8fbd1d627c2893e5713c87f9d03e',
+                    entity: { name: 'media' }
+                },
+                buttonText: { source: 'static', value: 'Click here' },
+                buttonUrl: { source: 'static', value: null },
+                contentText: {
+                    source: 'static',
+                    value: '<p>Lorem ipsum dolor sit amet elitr.</p>'
+                }
+            }
+        }
+    },
+
+    third: {
+        type: 'image-button',
+         default: {
+            config: {
+                media: {
+                    source: 'static',
+                    value: '019c8fbd1d627c2893e5713c87f9d03e',
+                    entity: { name: 'media' }
+                },
+                buttonText: { source: 'static', value: 'Click here' },
+                buttonUrl: { source: 'static', value: null },
+                contentText: {
+                    source: 'static',
+                    value: '<p>Lorem ipsum dolor sit amet elitr.</p>'
+                }
+            }
+        }
+    },
+
+    fourth: {
+        type: 'image-button',
+         default: {
+            config: {
+                media: {
+                    source: 'static',
+                    value: '019c8fbd1d627c2893e5713c87f9d03e',
+                    entity: { name: 'media' }
+                },
+                buttonText: { source: 'static', value: 'Click here' },
+                buttonUrl: { source: 'static', value: null },
+                contentText: {
+                    source: 'static',
+                    value: '<p>Lorem ipsum dolor sit amet elitr.</p>'
+                }
+            }
+        }
+    }
+}
 });

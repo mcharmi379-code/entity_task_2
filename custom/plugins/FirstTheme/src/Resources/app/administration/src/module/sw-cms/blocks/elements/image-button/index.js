@@ -31,7 +31,7 @@ Shopware.Service('cmsService').registerCmsElement({
     defaultConfig: {
       media: {
             source: 'static',
-            value: '019c56346b5f7067a2405ab2f2294e85',
+            value: '019c8fbd1d627c2893e5713c87f9d03e',
             required: false,
             entity: { name: 'media' }
         },

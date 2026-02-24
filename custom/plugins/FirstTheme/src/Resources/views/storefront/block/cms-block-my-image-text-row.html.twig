@@ -1,13 +1,14 @@
 {% block block_my_image_text_row %}
-    <div class="cms-block-my-image-text-row">
+    <div class="cms-block-my-image-text-row container">
         <div class="row">
 
             {% for slotName in ['first', 'second', 'third', 'fourth'] %}
                 {% set element = block.slots.getSlot(slotName) %}
 
                 {% if element %}
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div data-cms-element-id="{{ element.id }}">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 cms-block-my-image-text-row__col">
+                        <div class="cms-block-my-image-text-row__item"
+                             data-cms-element-id="{{ element.id }}">
                             {% sw_include '@Storefront/storefront/element/cms-element-' ~ element.type ~ '.html.twig' ignore missing %}
                         </div>
                     </div>

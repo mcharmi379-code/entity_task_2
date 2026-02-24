@@ -35,19 +35,19 @@ export default {
         },
     },
 
-  async created() {
-    this.initElementConfig('image-button');
-    this.initElementData('image-button');
+    async created() {
+        this.initElementConfig('image-button');
+        this.initElementData('image-button');
 
-    if (this.element.config.media.value) {
-        const media = await this.mediaRepository.get(
-            this.element.config.media.value,
-            Shopware.Context.api
-        );
+        if (this.element.config.media.value) {
+            const media = await this.mediaRepository.get(
+                this.element.config.media.value,
+                Shopware.Context.api
+            );
 
-        this.updateElementData(media);
-    }
-},
+            this.updateElementData(media);
+        }
+    },
 
     methods: {
         async onImageUpload({ targetId }) {
