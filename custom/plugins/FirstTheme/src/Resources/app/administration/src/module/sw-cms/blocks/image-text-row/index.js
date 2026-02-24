@@ -30,113 +30,17 @@ Shopware.Service('cmsService').registerCmsBlock({
         sizingMode: 'boxed',
     },
     slots: {
-        'left-image': {
-            type: 'image',
-            default: {
-                config: {
-                    displayMode: { source: 'static', value: 'cover' },
-                },
-                data: {
-                    media: {
-                        value: CMS.MEDIA.previewCamera,
-                        source: 'default',
-                    },
-                },
-            },
+         first: {
+            type: 'image-button'
         },
-        'left-text': {
-            type: 'text',
-            default: {
-                config: {
-                    content: {
-                        source: 'static',
-                        value: `
-                        <p>Lorem ipsum dolor sit amet elitr.</p>
-                        `.trim(),
-                    },
-                },
-            },
+        second: {
+            type: 'image-button'
         },
-        'center-image': {
-            type: 'image',
-            default: {
-                config: {
-                    displayMode: { source: 'static', value: 'cover' },
-                },
-                data: {
-                    media: {
-                        value: CMS.MEDIA.previewPlant,
-                        source: 'default',
-                    },
-                },
-            },
+        third: {
+            type: 'image-button'
         },
-        'center-text': {
-            type: 'text',
-            default: {
-                config: {
-                    content: {
-                        source: 'static',
-                        value: `
-                        <p>Lorem ipsum dolor sit amet elitr.</p>
-                        `.trim(),
-                    },
-                },
-            },
-        },
-        'right-image': {
-            type: 'image',
-            default: {
-                config: {
-                    displayMode: { source: 'static', value: 'cover' },
-                },
-                data: {
-                    media: {
-                        value: CMS.MEDIA.previewGlasses,
-                        source: 'default',
-                    },
-                },
-            },
-        },
-        'right-text': {
-            type: 'text',
-            default: {
-                config: {
-                    content: {
-                        source: 'static',
-                        value: `
-                        <p>Lorem ipsum dolor sit amet elitr.</p>
-                        `.trim(),
-                    },
-                },
-            },
-        },
-        'bottom-image': {
-            type: 'image',
-            default: {
-                config: {
-                    displayMode: { source: 'static', value: 'cover' },
-                },
-                data: {
-                    media: {
-                        value: CMS.MEDIA.previewGlasses,
-                        source: 'default',
-                    },
-                },
-            },
-        },
-        'bottom-text': {
-            type: 'text',
-            default: {
-                config: {
-                    content: {
-                        source: 'static',
-                        value: `
-                        <p>Lorem ipsum dolor sit amet elitr.</p>
-                        `.trim(),
-                    },
-                },
-            },
-        },
+        fourth: {
+            type: 'image-button'
+        }
     },
 });

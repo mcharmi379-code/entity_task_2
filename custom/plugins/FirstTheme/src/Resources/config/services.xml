@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service id="FirstTheme\Core\Content\Cms\ImageButtonCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+    </services>
+</container>

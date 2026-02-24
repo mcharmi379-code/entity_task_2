@@ -1,0 +1,46 @@
+{% block sw_cms_el_config_image_button %}
+<div class="sw-cms-el-config-image-button">
+
+    <!-- MEDIA (Same as core image element) -->
+    <sw-cms-mapping-field
+        v-model:config="element.config.media"
+        label="Image"
+        value-types="entity"
+        entity="media"
+    >
+        <sw-media-upload-v2
+            variant="regular"
+            :upload-tag="uploadTag"
+            :source="previewSource"
+            :allow-multi-select="false"
+            @media-upload-remove-image="onImageRemove"
+        />
+    </sw-cms-mapping-field>
+
+    <sw-upload-listener
+        :upload-tag="uploadTag"
+        auto-upload
+        @media-upload-finish="onImageUpload"
+    />
+
+    <!-- Button Text -->
+    <sw-text-field
+        v-model:value="element.config.buttonText.value"
+        label="Button Text"
+        @update:value="onFieldChange">
+    </sw-text-field>
+
+    <sw-text-field
+        v-model:value="element.config.buttonUrl.value"
+        label="Button URL"
+        @update:value="onFieldChange">
+    </sw-text-field>
+
+    <sw-text-editor
+        v-model:value="element.config.contentText.value"
+        label="Content Text"
+        @update:value="onFieldChange">
+    </sw-text-editor>
+
+</div>
+{% endblock %}

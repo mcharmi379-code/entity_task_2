@@ -1,0 +1,28 @@
+{% block element_image_button %}
+{# {{ dump(element.data) }} #}
+    <div class="cms-element-image-button">
+
+{% if element.data and element.data.media %}
+    <div class="cms-element-image-button__image">
+        <img src="{{ element.data.media.url }}"
+             alt="{{ element.data.media.alt ?: '' }}">
+    </div>
+{% endif %}
+
+        {% if element.config.buttonText.value %}
+            <div class="cms-element-image-button__button">
+                <a href="{{ element.config.buttonUrl.value ?: '#' }}"
+                   class="btn btn-primary">
+                    {{ element.config.buttonText.value }}
+                </a>
+            </div>
+        {% endif %}
+
+        {% if element.config.contentText.value %}
+            <div class="cms-element-image-button__text">
+                {{ element.config.contentText.value|raw }}
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+    {% block sw_cms_element_image_button %}
+    <div class="sw-cms-el-image-button">
+        {% block sw_cms_element_image_button_image %}
+        <div class="sw-cms-el-image-button__image ">
+        {# <a :href="element.config.link.value" class="box__image-link"> #}
+            <img :src="mediaUrl" alt="CMS Image" >
+        {# </a> #}
+        </div>
+        {% endblock %}
+
+        {% block sw_cms_element_image_button_btn %}
+        <div class="sw-cms-el-image-button__button sw-cms-product-box-preview__action" v-if="element.config.buttonText.value">
+            <button href="#" class="btn btn-primary" onclick="return false;">
+                {{ element.config.buttonText.value }}
+            </button>
+        </div>
+        {% endblock %}
+
+        {% block sw_cms_element_image_button_text %}
+        <div class="sw-cms-el-image-button__text" 
+            v-if="element.config.contentText.value" 
+            v-html="element.config.contentText.value">
+        </div>
+        {% endblock %}
+    </div>
+    {% endblock %}

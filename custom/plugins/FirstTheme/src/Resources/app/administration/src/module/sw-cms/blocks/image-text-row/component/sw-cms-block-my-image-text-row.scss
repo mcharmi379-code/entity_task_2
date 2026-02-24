@@ -1,20 +1,13 @@
-.sw-cms-block-image-text-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    grid-gap: 40px;
-
-    .sw-cms-block-column {
-        &.is--bottom {
-            grid-column: 1 / span 3; 
-            max-width: 33%; 
-        }
+.sw-cms-block-my-image-text-row {
+    &__grid {
+        display: grid;
+      grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
     }
 
-    .sw-cms-el-text {
-        padding-top: 20px;
-    }
-
-    .sw-cms-el-image.is--cover {
-        min-height: 200px;
+    &__item {
+        background: #fff;
+        padding: 10px;
+        border: 1px solid #ddd;
     }
 }
