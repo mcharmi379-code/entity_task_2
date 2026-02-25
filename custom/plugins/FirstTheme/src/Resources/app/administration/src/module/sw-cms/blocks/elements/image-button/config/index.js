@@ -7,11 +7,15 @@ export default {
 
     inject: ['repositoryFactory'],
 
-    emits: ['element-update'],
-
     mixins: [
-        Mixin.getByName('cms-element'),
+        Mixin.getByName('cms-element')
     ],
+
+    data() {
+        return {
+            mediaModalIsOpen: false
+        };
+    },
 
     computed: {
         mediaRepository() {
@@ -23,30 +27,16 @@ export default {
         },
 
         previewSource() {
-            if (this.element?.data?.media) {
+            if (this.element?.data?.media?.id) {
                 return this.element.data.media;
             }
 
-            if (this.element?.config?.media?.value) {
-                return this.element.config.media.value;
-            }
-
-            return null;
-        },
+            return this.element.config.media.value;
+        }
     },
 
-    async created() {
+    created() {
         this.initElementConfig('image-button');
-        this.initElementData('image-button');
-
-        if (this.element.config.media.value) {
-            const media = await this.mediaRepository.get(
-                this.element.config.media.value,
-                Shopware.Context.api
-            );
-
-            this.updateElementData(media);
-        }
     },
 
     methods: {
@@ -64,12 +54,29 @@ export default {
         onImageRemove() {
             this.element.config.media.value = null;
             this.updateElementData();
-
             this.$emit('element-update', this.element);
         },
 
+        onSelectionChanges(mediaEntity) {
+            const media = mediaEntity[0];
+
+            this.element.config.media.value = media.id;
+            this.element.config.media.source = 'static';
+
+            this.updateElementData(media);
+            this.$emit('element-update', this.element);
+        },
+
+        onCloseModal() {
+            this.mediaModalIsOpen = false;
+        },
+
+        onOpenMediaModal() {
+            this.mediaModalIsOpen = true;
+        },
+
         updateElementData(media = null) {
-            const mediaId = media === null ? null : media.id;
+            const mediaId = media ? media.id : null;
 
             if (!this.element.data) {
                 this.$set(this.element, 'data', { mediaId, media });
@@ -83,5 +90,5 @@ export default {
         onFieldChange() {
             this.$emit('element-update', this.element);
         }
-    },
+    }
 };

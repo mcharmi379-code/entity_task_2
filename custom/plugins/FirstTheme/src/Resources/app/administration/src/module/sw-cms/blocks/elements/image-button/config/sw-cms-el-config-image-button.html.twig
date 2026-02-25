@@ -12,6 +12,8 @@
             :upload-tag="uploadTag"
             :source="previewSource"
             :allow-multi-select="false"
+            :default-folder="cmsPageState.pageEntityName"
+            @media-upload-sidebar-open="onOpenMediaModal"
             @media-upload-remove-image="onImageRemove"
         />
     </sw-cms-mapping-field>
@@ -22,24 +24,30 @@
         @media-upload-finish="onImageUpload"
     />
 
+    <sw-media-modal-v2
+        v-if="mediaModalIsOpen"
+        variant="full"
+        :entity-context="cmsPageState.entityName"
+        :allow-multi-select="false"
+        :initial-folder-id="cmsPageState.defaultMediaFolderId"
+        @media-modal-selection-change="onSelectionChanges"
+        @modal-close="onCloseModal"
+    />
 
     <sw-text-field
         v-model:value="element.config.buttonText.value"
         label="Button Text"
-        @update:value="onFieldChange">
-    </sw-text-field>
+        @update:value="onFieldChange" />
 
     <sw-text-field
         v-model:value="element.config.buttonUrl.value"
         label="Button URL"
-        @update:value="onFieldChange">
-    </sw-text-field>
+        @update:value="onFieldChange" />
 
     <sw-text-editor
         v-model:value="element.config.contentText.value"
         label="Content Text"
-        @update:value="onFieldChange">
-    </sw-text-editor>
+        @update:value="onFieldChange" />
 
 </div>
 {% endblock %}

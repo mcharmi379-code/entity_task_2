@@ -25,24 +25,33 @@ import './component';
 Shopware.Service('cmsService').registerCmsElement({
     name: 'image-button',
     label: 'Image Button with text',
-    component: 'sw-cms-el-image-button', 
+    component: 'sw-cms-el-image-button',
     configComponent: 'sw-cms-el-config-image-button',
     previewComponent: 'sw-cms-el-preview-image-button',
+
     defaultConfig: {
-      media: {
+        media: {
             source: 'static',
-            value: '019c8fbd1d627c2893e5713c87f9d03e',
+            value: null,
             required: false,
-            entity: { name: 'media' }
+            entity: {
+                name: 'media'
+            }
         },
 
-        buttonText: { source: 'static', value: 'Click here' },
-        buttonUrl: { source: 'static', value: null },
-
-        contentText: { 
-            source: 'static', 
-            value: '<p>Lorem ipsum dolor sit amet elitr.</p>' 
+        buttonText: {
+            source: 'static',
+            value: 'Click here'
         },
-        displayMode: { source: 'static', value: 'standard' },
-    },
+
+        buttonUrl: {
+            source: 'static',
+            value: null
+        },
+
+        contentText: {
+            source: 'static',
+            value: '<p>Lorem ipsum dolor sit amet</p>'
+        }
+    }
 });
