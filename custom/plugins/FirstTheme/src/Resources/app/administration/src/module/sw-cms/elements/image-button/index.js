@@ -1,3 +1,4 @@
+// alert('Hello World');
 /**
  * @private
  * @sw-package discovery
