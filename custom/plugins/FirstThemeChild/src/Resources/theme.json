@@ -1,0 +1,41 @@
+{
+  "name": "FirstThemeChild",
+  "author": "Shopware AG",
+  "views": [
+   "@FirstThemeChild",
+   "@FirstTheme",
+   "@Storefront",
+   "@Plugins"
+],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@FirstTheme",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "@FirstTheme",
+    "app/storefront/dist/storefront/js/first-theme-child/first-theme-child.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "@FirstTheme",
+    "app/storefront/src/assets"
+  ],
+  "configInheritance": [
+    "@Storefront",
+    "@FirstTheme"
+  ],
+  "config": {
+  "fields": {
+    "headerCustomText": {
+      "type": "text",
+      "label": {
+        "en-GB": "Header Custom Text",
+        "de-DE": "Header Custom Text"
+      },
+      "scss": false
+    }
+  }
+}
+}

@@ -2,9 +2,9 @@
   "name": "FirstTheme",
   "author": "Shopware AG",
   "views": [
-     "@Storefront",
-     "@Plugins",
-     "@FirstTheme"
+    "@Storefront",
+    "@FirstTheme",
+    "@Plugins"
   ],
   "style": [
     "app/storefront/src/scss/overrides.scss",

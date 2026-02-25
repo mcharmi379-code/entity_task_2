@@ -1,0 +1,7 @@
+{% sw_extends '@FirstTheme/storefront/layout/header/logo.html.twig' %}
+
+{% block layout_header_logo_inner %}
+    {{ parent() }}
+    {# <h1>heyyooo</h1> #}
+    {{ theme_config('headerCustomText') }}
+{% endblock %}
